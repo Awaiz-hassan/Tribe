@@ -46,7 +46,6 @@ import java.util.List;
 
 public class Memories extends Fragment {
     private ImageView image_profile;
-    private TextView posts;
 
     private TextView fullname;
     private TextView bio;
@@ -93,7 +92,6 @@ public class Memories extends Fragment {
         progressDialog.setCancelable(false);
 
         image_profile = view.findViewById(R.id.image_profile);
-        posts = view.findViewById(R.id.posts);
         fullname = view.findViewById(R.id.fullname);
         bio = view.findViewById(R.id.bio);
         username = view.findViewById(R.id.username);
@@ -133,13 +131,7 @@ public class Memories extends Fragment {
         });
 
         userInfo();
-        getNrPosts();
         myFotos();
-
-
-
-
-
 
 
         return view;
@@ -181,29 +173,7 @@ public class Memories extends Fragment {
             }
         });
     }
-    private void getNrPosts () {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("userPosts");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int i = 0;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Post post = snapshot.getValue(Post.class);
-                    if (post.getPublisher().equals(profileid)){
-                        i++;
-                    }
-                }
 
-                posts.setText("" + i);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
     private void myFotos() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("userPosts");
         reference.addValueEventListener(new ValueEventListener() {
@@ -212,9 +182,8 @@ public class Memories extends Fragment {
                 postList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Post post = snapshot.getValue(Post.class);
-                    if (post.getPublisher().equals(profileid)){
                         postList.add(post);
-                    }
+
                 }
 
                 Collections.reverse(postList);
