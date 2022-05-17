@@ -92,14 +92,9 @@ public class CreateEvent extends Fragment {
         hashMap.put("date" , date);
         hashMap.put("time" , time);
         hashMap.put("trybeid","ppp");
+        hashMap.put("excepted","false");
         hashMap.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
-        reference.child(eventid).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                getTrybeMenmbers(eventid,description);
-
-            }
-        });
+        reference.child(eventid).setValue(hashMap).addOnSuccessListener(unused -> getTrybeMenmbers(eventid,description));
 
     }
 
@@ -162,6 +157,7 @@ public class CreateEvent extends Fragment {
                                         }
                                         FirebaseDatabase.getInstance().getReference("Events").child(eventid).child("trybeid").setValue(trybeid);
                                         progressDialog.dismiss();
+                                        if(getActivity()!=null)
                                         getActivity().onBackPressed();
                                         Toast.makeText(getActivity(), "Event created", Toast.LENGTH_SHORT).show();
 

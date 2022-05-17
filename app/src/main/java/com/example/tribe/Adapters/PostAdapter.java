@@ -78,6 +78,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         publisherInfo(holder.image_profile , holder.username , holder.publisher , post.getPublisher());
         isLikes(post.getPostid() , holder.like);
+        dislike(post.getPostid(),holder.dislike);
         noLikes(holder.likes , post.getPostid());
         getComments(post.getPostid() , holder.comments);
 
@@ -88,9 +89,31 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     FirebaseDatabase.getInstance().getReference().child("Likes")
                             .child(post.getPostid())
                             .child(firebaseUser.getUid()).setValue(true);
+                    FirebaseDatabase.getInstance().getReference().child("disLikes")
+                            .child(post.getPostid())
+                            .child(firebaseUser.getUid()).removeValue();
                     addNotifications(post.getPublisher() , post.getPostid());
                 } else {
                     FirebaseDatabase.getInstance().getReference().child("Likes")
+                            .child(post.getPostid())
+                            .child(firebaseUser.getUid()).removeValue();
+                }
+            }
+        });
+        holder.dislike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.dislike.getTag().equals("dislike")){
+                    FirebaseDatabase.getInstance().getReference().child("disLikes")
+                            .child(post.getPostid())
+                            .child(firebaseUser.getUid()).setValue(true);
+                    FirebaseDatabase.getInstance().getReference().child("Likes")
+                            .child(post.getPostid())
+                            .child(firebaseUser.getUid()).removeValue();
+
+                    adddislikeNotifications(post.getPublisher() , post.getPostid());
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("disLikes")
                             .child(post.getPostid())
                             .child(firebaseUser.getUid()).removeValue();
                 }
@@ -118,45 +141,38 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         });
 
 
+        if (!post.getPublisher().equals(firebaseUser.getUid())){
+            holder.more.setVisibility(View.GONE);
+        }
+        holder.more.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(mContext , v);
+            popupMenu.setOnMenuItemClickListener(item -> {
+                switch (item.getItemId()){
+                    case R.id.edit :
+                        editPost(post.getPostid());
+                        return true;
 
-        holder.more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(mContext , v);
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()){
-                            case R.id.edit :
-                                editPost(post.getPostid());
-                                return true;
-
-                            case R.id.delete :
-                                FirebaseDatabase.getInstance().getReference("Posts")
-                                        .child(post.getPostid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()){
-                                            Toast.makeText(mContext, "Deleted!", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                                return true;
-
-
-
-                            default:
-                                return false;
-                        }
-                    }
-                });
-                popupMenu.inflate(R.menu.post_menu);
-                if (!post.getPublisher().equals(firebaseUser.getUid())){
-                    popupMenu.getMenu().findItem(R.id.edit).setVisible(false);
-                    popupMenu.getMenu().findItem(R.id.delete).setVisible(false);
+                    case R.id.delete :
+                        FirebaseDatabase.getInstance().getReference("Posts")
+                                .child(post.getPostid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(mContext, "Deleted!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        return true;
+                    default:
+                        return false;
                 }
-                popupMenu.show();
+            });
+            popupMenu.inflate(R.menu.post_menu);
+            if (!post.getPublisher().equals(firebaseUser.getUid())){
+                popupMenu.getMenu().findItem(R.id.edit).setVisible(false);
+                popupMenu.getMenu().findItem(R.id.delete).setVisible(false);
             }
+            popupMenu.show();
         });
 
     }
@@ -170,8 +186,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         public ImageView image_profile;
         public ImageView like;
+        public ImageView dislike;
         public ImageView comment;
         public ImageView more;
+
 
         public TextView username;
         public TextView likes;
@@ -186,6 +204,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             like = itemView.findViewById(R.id.like);
             comment = itemView.findViewById(R.id.comment);
             more = itemView.findViewById(R.id.more);
+            dislike=itemView.findViewById(R.id.dis_like);
 
             username = itemView.findViewById(R.id.username);
             likes = itemView.findViewById(R.id.likes);
@@ -238,12 +257,52 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     }
 
+
+    private void dislike (String postid , final ImageView imageView) {
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("disLikes").child(postid);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(firebaseUser.getUid()).exists()){
+                    imageView.setImageResource(R.drawable.ic_disliked);
+                    imageView.setTag("disliked");
+                } else {
+                    imageView.setImageResource(R.drawable.ic_like);
+                    imageView.setTag("dislike");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
+
     private void addNotifications(String userid , String postid) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
 
         HashMap<String , Object> hashMap = new HashMap<>();
         hashMap.put("userid" , firebaseUser.getUid());
         hashMap.put("text" , "liked your post");
+        hashMap.put("postid" , postid);
+        hashMap.put("ispost" , true);
+
+        reference.push().setValue(hashMap);
+    }
+
+    private void adddislikeNotifications(String userid , String postid) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
+
+        HashMap<String , Object> hashMap = new HashMap<>();
+        hashMap.put("userid" , firebaseUser.getUid());
+        hashMap.put("text" , "dis-liked your post");
         hashMap.put("postid" , postid);
         hashMap.put("ispost" , true);
 
@@ -258,6 +317,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 likes.setText(dataSnapshot.getChildrenCount() + " likes");
+                FirebaseDatabase.getInstance().getReference().child("Posts").child(postid).child("likesCount").setValue(String.valueOf(dataSnapshot.getChildrenCount()));
+
             }
 
             @Override

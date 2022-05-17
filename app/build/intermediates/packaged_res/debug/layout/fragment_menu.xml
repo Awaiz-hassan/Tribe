@@ -436,6 +436,42 @@
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/logout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:paddingVertical="10dp"
+                />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_forward"
+                android:layout_weight="0.1"
+                android:layout_gravity="center_vertical"
+
+                />
+
+
+
+        </LinearLayout>
+
+
+
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"

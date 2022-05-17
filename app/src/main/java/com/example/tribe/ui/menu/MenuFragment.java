@@ -4,6 +4,9 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,10 +19,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
+import com.example.tribe.LC.LoginActivity;
 import com.example.tribe.R;
 import com.example.tribe.databinding.FragmentMenuBinding;
+import com.example.tribe.utils.Utils;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MenuFragment extends Fragment {
 
@@ -27,6 +35,7 @@ public class MenuFragment extends Fragment {
    private Toolbar toolbar;
     private FragmentMenuBinding binding;
     CardView memories,community;
+    LinearLayout logoutButton;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -37,6 +46,7 @@ public class MenuFragment extends Fragment {
         binding = FragmentMenuBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         memories=root.findViewById(R.id.memories);
+        logoutButton=root.findViewById(R.id.logout_btn);
         community=root.findViewById(R.id.community);
         community.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,14 +55,19 @@ public class MenuFragment extends Fragment {
 
             }
         });
-        memories.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_navigation_menu_to_memories2);
-            }
-        });
+        memories.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_navigation_menu_to_memories2));
 
         toolbar = getActivity().findViewById(R.id.main_menu_toolbar);
+        logoutButton.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            SharedPreferences settings = getActivity().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+            settings.edit().clear().commit();
+            new Utils(getActivity()).clearSharedPrefs();
+            new Utils(getActivity()).SetShowOnboard(false);
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
 
         return root;
     }

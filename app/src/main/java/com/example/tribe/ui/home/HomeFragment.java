@@ -215,6 +215,7 @@ public class HomeFragment extends Fragment {
                                             if(eventMOdel.getTrybeid().equals(trybeid))
                                             eventMOdelList.add(eventMOdel);
                                         }
+                                        eventsAdapter.notifyDataSetChanged();
                                     }
 
                                     @Override

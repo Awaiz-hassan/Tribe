@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private DocumentReference documentReference;
     private boolean isExist;
-    ProgressDialog mDialog;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private FirebaseUser user;
@@ -156,6 +155,9 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
                     editor.putString("profileid", user.getUid());
                     editor.apply();
+
+
+
                     startActivity(new Intent(LoginActivity.this, EmailVerificationActivity.class));
                     finish();
 

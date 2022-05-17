@@ -6,15 +6,25 @@ public class Post {
     private String postimage;
     private String description;
     private String publisher;
+    private String likesCount;
 
     public Post() {
     }
 
-    public Post(String postid, String postimage, String description, String publisher) {
+    public Post(String postid, String postimage, String description, String publisher, String likesCount) {
         this.postid = postid;
         this.postimage = postimage;
         this.description = description;
         this.publisher = publisher;
+        this.likesCount = likesCount;
+    }
+
+    public String getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(String likesCount) {
+        this.likesCount = likesCount;
     }
 
     public String getPostid() {

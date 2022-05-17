@@ -121,6 +121,7 @@ public class Memories extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(getActivity()!=null)
                 getActivity().onBackPressed();
             }
         });

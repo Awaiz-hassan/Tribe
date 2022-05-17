@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.tribe.Adapters.ViewPagerAdapter;
 import com.example.tribe.MainActivity;
 import com.example.tribe.R;
+import com.example.tribe.utils.Utils;
 
 import at.markushi.ui.CircleButton;
 
@@ -26,6 +27,7 @@ public class OnboardingActivity extends AppCompatActivity {
     LinearLayout mDotLayout;
     Button skip_btn;
     CircleButton next_btn;
+    Utils utils;
 
     TextView[] dots;
     ViewPagerAdapter viewPagerAdapter;
@@ -38,15 +40,14 @@ public class OnboardingActivity extends AppCompatActivity {
 
         skip_btn = findViewById(R.id.btn_skip);
         next_btn = findViewById(R.id.btn_next);
-
-
+        utils=new Utils(this);
 
 
 
         skip_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                utils.SetShowOnboard(false);
                 startActivity(new Intent(OnboardingActivity.this, LoginActivity.class));
                 finish();
 
@@ -62,6 +63,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
                    mSlideView.setCurrentItem(getitem(1),true);
                }else{
+                   utils.SetShowOnboard(false);
                    startActivity(new Intent(OnboardingActivity.this, LoginActivity.class));
                    finish();
                }

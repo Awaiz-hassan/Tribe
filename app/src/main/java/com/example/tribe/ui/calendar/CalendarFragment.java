@@ -110,7 +110,7 @@ public class CalendarFragment extends Fragment {
                         eventMOdelList.clear();
                         for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                             EventMOdel eventMOdel= dataSnapshot.getValue(EventMOdel.class);
-                            if(eventMOdel.getTrybeid().equals(trybeid))
+                            if(eventMOdel.getTrybeid().equals(trybeid)&eventMOdel.getPublisher().equals(firebaseUser.getUid()))
                                 eventMOdelList.add(eventMOdel);
                         }
                         eventsAdapter.notifyDataSetChanged();
@@ -145,7 +145,7 @@ public class CalendarFragment extends Fragment {
                         eventMOdelList.clear();
                         for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                             EventMOdel eventMOdel= dataSnapshot.getValue(EventMOdel.class);
-                            if(eventMOdel.getTrybeid().equals(trybeid))
+                            if(eventMOdel.getTrybeid().equals(trybeid)&eventMOdel.getPublisher().equals(firebaseUser.getUid()))
                                 if(eventMOdel.getDate().equals(date))
                                 eventMOdelList.add(eventMOdel);
                         }

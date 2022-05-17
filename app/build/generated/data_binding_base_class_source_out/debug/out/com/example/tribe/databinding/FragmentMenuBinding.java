@@ -44,6 +44,9 @@ public final class FragmentMenuBinding implements ViewBinding {
   public final ImageView iconLearning;
 
   @NonNull
+  public final LinearLayout logoutBtn;
+
+  @NonNull
   public final Toolbar mainMenuToolbar;
 
   @NonNull
@@ -52,7 +55,8 @@ public final class FragmentMenuBinding implements ViewBinding {
   private FragmentMenuBinding(@NonNull LinearLayout rootView, @NonNull AppBarLayout appBarLayout,
       @NonNull CardView community, @NonNull ImageView iconCommunity, @NonNull ImageView iconFridge,
       @NonNull ImageView iconHealth, @NonNull ImageView iconIslam, @NonNull ImageView iconLearning,
-      @NonNull Toolbar mainMenuToolbar, @NonNull CardView memories) {
+      @NonNull LinearLayout logoutBtn, @NonNull Toolbar mainMenuToolbar,
+      @NonNull CardView memories) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
     this.community = community;
@@ -61,6 +65,7 @@ public final class FragmentMenuBinding implements ViewBinding {
     this.iconHealth = iconHealth;
     this.iconIslam = iconIslam;
     this.iconLearning = iconLearning;
+    this.logoutBtn = logoutBtn;
     this.mainMenuToolbar = mainMenuToolbar;
     this.memories = memories;
   }
@@ -134,6 +139,12 @@ public final class FragmentMenuBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.logout_btn;
+      LinearLayout logoutBtn = ViewBindings.findChildViewById(rootView, id);
+      if (logoutBtn == null) {
+        break missingId;
+      }
+
       id = R.id.main_menu_toolbar;
       Toolbar mainMenuToolbar = ViewBindings.findChildViewById(rootView, id);
       if (mainMenuToolbar == null) {
@@ -147,8 +158,8 @@ public final class FragmentMenuBinding implements ViewBinding {
       }
 
       return new FragmentMenuBinding((LinearLayout) rootView, appBarLayout, community,
-          iconCommunity, iconFridge, iconHealth, iconIslam, iconLearning, mainMenuToolbar,
-          memories);
+          iconCommunity, iconFridge, iconHealth, iconIslam, iconLearning, logoutBtn,
+          mainMenuToolbar, memories);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

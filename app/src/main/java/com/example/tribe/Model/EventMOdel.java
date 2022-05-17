@@ -8,9 +8,10 @@ public class EventMOdel {
     String time;
     String title;
     String trybeid;
+    String excepted;
     public EventMOdel(){}
 
-    public EventMOdel(String date, String description, String eventid, String publisher, String time, String title, String trybeid) {
+    public EventMOdel(String date, String description, String eventid, String publisher, String time, String title, String trybeid, String excepted) {
         this.date = date;
         this.description = description;
         this.eventid = eventid;
@@ -18,6 +19,15 @@ public class EventMOdel {
         this.time = time;
         this.title = title;
         this.trybeid = trybeid;
+        this.excepted = excepted;
+    }
+
+    public String getExcepted() {
+        return excepted;
+    }
+
+    public void setExcepted(String excepted) {
+        this.excepted = excepted;
     }
 
     public String getDate() {

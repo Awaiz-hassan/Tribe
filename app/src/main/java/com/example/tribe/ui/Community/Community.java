@@ -66,6 +66,7 @@ public class Community extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(getActivity()!=null)
                 getActivity().onBackPressed();
             }
         });
@@ -85,6 +86,7 @@ public class Community extends Fragment {
                     HashMap<String , Object> hashMap = new HashMap<>();
                     hashMap.put("postid" , postid);
                     hashMap.put("description" , postdetails.getText().toString().trim());
+                    hashMap.put("likesCount" , "0");
                     hashMap.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
                     reference.child(postid).setValue(hashMap);
                     postdetails.setText("");
@@ -99,9 +101,7 @@ public class Community extends Fragment {
     private void readPosts () {
         if(progressDialog!=null) progressDialog.show();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-
-        reference.addValueEventListener(new ValueEventListener() {
+         FirebaseDatabase.getInstance().getReference("Posts").orderByChild("likesCount").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 postList.clear();

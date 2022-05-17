@@ -31,6 +31,9 @@ public final class PostItemBinding implements ViewBinding {
   public final TextView description;
 
   @NonNull
+  public final ImageView disLike;
+
+  @NonNull
   public final CircleImageView imageProfile;
 
   @NonNull
@@ -49,13 +52,14 @@ public final class PostItemBinding implements ViewBinding {
   public final TextView username;
 
   private PostItemBinding(@NonNull RelativeLayout rootView, @NonNull ImageView comment,
-      @NonNull TextView comments, @NonNull TextView description,
+      @NonNull TextView comments, @NonNull TextView description, @NonNull ImageView disLike,
       @NonNull CircleImageView imageProfile, @NonNull ImageView like, @NonNull TextView likes,
       @NonNull ImageView more, @NonNull TextView publisher, @NonNull TextView username) {
     this.rootView = rootView;
     this.comment = comment;
     this.comments = comments;
     this.description = description;
+    this.disLike = disLike;
     this.imageProfile = imageProfile;
     this.like = like;
     this.likes = likes;
@@ -109,6 +113,12 @@ public final class PostItemBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.dis_like;
+      ImageView disLike = ViewBindings.findChildViewById(rootView, id);
+      if (disLike == null) {
+        break missingId;
+      }
+
       id = R.id.image_profile;
       CircleImageView imageProfile = ViewBindings.findChildViewById(rootView, id);
       if (imageProfile == null) {
@@ -145,7 +155,7 @@ public final class PostItemBinding implements ViewBinding {
         break missingId;
       }
 
-      return new PostItemBinding((RelativeLayout) rootView, comment, comments, description,
+      return new PostItemBinding((RelativeLayout) rootView, comment, comments, description, disLike,
           imageProfile, like, likes, more, publisher, username);
     }
     String missingId = rootView.getResources().getResourceName(id);

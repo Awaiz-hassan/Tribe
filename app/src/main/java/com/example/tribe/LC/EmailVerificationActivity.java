@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.tribe.BottomNavigationActivity;
 import com.example.tribe.MainActivity;
 import com.example.tribe.R;
+import com.example.tribe.utils.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,7 +53,7 @@ public class EmailVerificationActivity extends AppCompatActivity {
         if(mAuth.getCurrentUser().isEmailVerified()){
 
             mAuth.getCurrentUser().reload();
-
+            new Utils(this).SetShowOnboard(false);
             startActivity(new Intent(EmailVerificationActivity.this, BottomNavigationActivity.class));
             finish();
 
@@ -114,6 +115,7 @@ public class EmailVerificationActivity extends AppCompatActivity {
                     mAuth.getCurrentUser().reload();
 
                     if(mAuth.getCurrentUser().isEmailVerified()){
+                        new Utils(EmailVerificationActivity.this).SetShowOnboard(false);
 
                         Toast.makeText(EmailVerificationActivity.this, "Your Email is verified now", Toast.LENGTH_SHORT).show();
                         Intent intent= new Intent(EmailVerificationActivity.this, BottomNavigationActivity.class);

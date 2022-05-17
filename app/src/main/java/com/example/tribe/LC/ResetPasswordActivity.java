@@ -42,17 +42,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
-
-
-
-
-
-
-
-
-
-
-
         back_arrow_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

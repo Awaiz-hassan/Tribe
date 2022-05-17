@@ -2697,6 +2697,7 @@ drawable ic_clock_black_24dp
 drawable ic_comment
 drawable ic_community_icon
 drawable ic_dashboard_black_24dp
+drawable ic_disliked
 drawable ic_email
 drawable ic_forward
 drawable ic_google_button_svg
@@ -2800,6 +2801,7 @@ id TOP_END
 id TOP_START
 id Title
 id accelerate
+id accept
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
 id accessibility_custom_action_1
@@ -2988,7 +2990,9 @@ id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
 id delete
+id deleteEvent
 id deltaRelative
+id deny
 id dependency_ordering
 id description
 id design_bottom_sheet
@@ -2999,6 +3003,7 @@ id design_navigation_view
 id dialog_button
 id dimensions
 id direct
+id dis_like
 id disableHome
 id disableIntraAutoTransition
 id disablePostScroll
@@ -3018,6 +3023,7 @@ id easeInOut
 id easeOut
 id east
 id edit
+id editEvent
 id edit_confirm_pass_signup
 id edit_email_reset_pass
 id edit_email_signup
@@ -3093,6 +3099,7 @@ id ignoreRequest
 id image
 id imageButton
 id imageView
+id imageView2
 id image_added
 id image_onBoarding
 id image_profile
@@ -3677,6 +3684,7 @@ layout text_view_without_line_height
 layout user_item
 menu bottom_nav_menu
 menu crop_image_menu
+menu delete_menu
 menu example_menu
 menu example_menu2
 menu main_custom_menu

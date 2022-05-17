@@ -40,6 +40,22 @@ public class Utils {
         return LoggedIn;
     }
 
+    public void clearSharedPrefs(){
+        sharedPreferences.edit().clear().commit();
+    }
+
+    public void SetShowOnboard(boolean val){
+        sharedPreferences.edit().putBoolean("showonboardornot",val).commit();
+    }
+    public boolean showonboard(){
+        return sharedPreferences.getBoolean("showonboardornot",true);
+
+    }
+
+
+
+
+
 
 
 }

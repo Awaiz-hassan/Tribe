@@ -66,63 +66,34 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         holder.comment.setText(comment.getComment());
         getUserInfo(holder.image_profile , holder.username , comment.getPublisher());
 
-//        holder.comment.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(mContext , MainActivity.class);
-//                intent.putExtra("publisherid" , comment.getPublisher());
-//                mContext.startActivity(intent);
-//
-//            }
-//        });
-//
-//        holder.image_profile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(mContext , MainActivity.class);
-//                intent.putExtra("publisherid" , comment.getPublisher());
-//                mContext.startActivity(intent);
-//
-//            }
-//        });
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (comment.getPublisher().endsWith(firebaseUser.getUid())){
-                    AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
-                    alertDialog.setTitle("Do you want to delete?");
 
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "No",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
+        holder.itemView.setOnLongClickListener(v -> {
+            if (comment.getPublisher().endsWith(firebaseUser.getUid())){
+                AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+                alertDialog.setTitle("Do you want to delete?");
 
-                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    FirebaseDatabase.getInstance().getReference("Comments")
-                                            .child(postid).child(comment.getCommentid())
-                                            .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful())
-                                                Toast.makeText(mContext, "Deleted!", Toast.LENGTH_SHORT).show();
-                                        }
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+                        (dialog, which) -> {
+                            FirebaseDatabase.getInstance().getReference("Comments")
+                                    .child(postid).child(comment.getCommentid())
+                                    .removeValue().addOnCompleteListener(task -> {
+                                        if (task.isSuccessful())
+                                            Toast.makeText(mContext, "Deleted!", Toast.LENGTH_SHORT).show();
                                     });
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
-                }
-                return true;
+                            dialog.dismiss();
+                        });
+                alertDialog.show();
             }
+            return true;
         });
 
     }
@@ -160,11 +131,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
                         .error(R.drawable.default_image)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .priority(Priority.HIGH);
-
+                if(mComment!=null&user!=null){
                 Glide.with(mContext).load(user.getImageURL())
                         .apply(options)
                         .into(imageView);
-                username.setText(user.getUsername());
+                username.setText(user.getUsername());}
             }
 
             @Override

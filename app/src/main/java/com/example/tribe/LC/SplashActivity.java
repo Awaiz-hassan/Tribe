@@ -91,14 +91,13 @@ public class SplashActivity extends AppCompatActivity {
                         if (currentUser != null) {
                             startActivity(new Intent(SplashActivity.this, EmailVerificationActivity.class));
                             finish();
-                        }else if(utils.isLoggedIn()) {
+                        }else if(!utils.showonboard()) {
 
 
                             /* Create an Intent that will start the Menu-Activity. */
                             Intent mainIntent = new Intent(SplashActivity.this, LoginActivity.class);
                             startActivity(mainIntent);
                             finish();
-
 
                         }
 
@@ -109,22 +108,7 @@ public class SplashActivity extends AppCompatActivity {
                     }
                 }, SPLASH_DISPLAY_LENGTH);
 
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
 
 
     }
