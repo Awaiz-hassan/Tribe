@@ -3258,7 +3258,6 @@ int id postButton 0x7f0801da
 int id postLayout 0x7f0801db
 int id postText 0x7f0801dc
 int id post_image 0x7f0801dd
-int id posts 0x7f0801de
 int id profile_image 0x7f0801df
 int id progress_circular 0x7f0801e0
 int id progress_horizontal 0x7f0801e1

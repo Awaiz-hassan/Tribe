@@ -3259,7 +3259,6 @@ id postButton
 id postLayout
 id postText
 id post_image
-id posts
 id profile_image
 id progress_circular
 id progress_horizontal

@@ -172,7 +172,6 @@ id post
 id postButton
 id postText
 id post_image
-id posts
 id profile_image
 id publisher
 id recycler_view
