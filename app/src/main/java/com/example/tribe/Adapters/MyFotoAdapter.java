@@ -20,7 +20,7 @@ import com.example.tribe.R;
 
 import java.util.List;
 
-public class MyFotoAdapter extends RecyclerView.Adapter<MyFotoAdapter.ViewHolder>{
+public class  MyFotoAdapter extends RecyclerView.Adapter<MyFotoAdapter.ViewHolder>{
 
     private Context context;
     private List<Post> mPosts;

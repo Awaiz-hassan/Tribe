@@ -1,4 +1,4 @@
-#Wed May 11 20:31:21 PKT 2022
+#Sat May 21 11:05:53 PKT 2022
 base.2=D\:\\backup\\tribe\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes3.dex
 path.2=classes3.dex
 base.1=D\:\\backup\\tribe\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes2.dex

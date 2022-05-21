@@ -42,7 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseDatabase db;
     private boolean isIdExist;
     CustomDialog customDialog;
-    Dialog dialog;
+    Dialog
+            dialog;
 
 
     private DocumentReference documentReference;
@@ -78,13 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        forgot_your_password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
-
-            }
-        });
+        forgot_your_password.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class)));
 
         text_view_create_account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,36 +136,33 @@ public class LoginActivity extends AppCompatActivity {
     private void authentication(String email, String pass) {
 
 
-        mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+        mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(task -> {
 
-                if(task.isSuccessful()){
+            if(task.isSuccessful()){
 
-                    user = mAuth.getInstance().getCurrentUser();
-                    String uid = user.getUid();
+                user = mAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
 
-                    utils.putToken(uid);
-                    dialog.dismiss();
-                    SharedPreferences.Editor editor = getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
-                    editor.putString("profileid", user.getUid());
-                    editor.apply();
+                utils.putToken(uid);
+                dialog.dismiss();
+                SharedPreferences.Editor editor = getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("profileid", user.getUid());
+                editor.apply();
 
 
 
-                    startActivity(new Intent(LoginActivity.this, EmailVerificationActivity.class));
-                    finish();
+                startActivity(new Intent(LoginActivity.this, EmailVerificationActivity.class));
+                finish();
 
 
-                }else{
-                    dialog.dismiss();
+            }else{
+                dialog.dismiss();
 
-                    Toast.makeText(LoginActivity.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
-
-                }
 
             }
+
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {

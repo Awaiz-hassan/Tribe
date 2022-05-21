@@ -42,6 +42,7 @@ drawable ic_chat
 drawable ic_comment
 drawable ic_community_icon
 drawable ic_dashboard_black_24dp
+drawable ic_disliked
 drawable ic_email
 drawable ic_forward
 drawable ic_google_button_svg
@@ -72,6 +73,7 @@ drawable white_button
 drawable white_button_background
 id Description
 id Title
+id accept
 id action_navigation_calendar_to_createEvent
 id action_navigation_menu_to_community
 id action_navigation_menu_to_memories2
@@ -112,8 +114,12 @@ id createEvent
 id date
 id datePicker1
 id delete
+id deleteEvent
+id deny
 id description
+id dis_like
 id edit
+id editEvent
 id edit_confirm_pass_signup
 id edit_email_reset_pass
 id edit_email_signup
@@ -133,6 +139,7 @@ id icon_profile_btn
 id icon_search_btn
 id imageButton
 id imageView
+id imageView2
 id image_added
 id image_onBoarding
 id image_profile
@@ -165,7 +172,6 @@ id post
 id postButton
 id postText
 id post_image
-id posts
 id profile_image
 id publisher
 id recycler_view
@@ -241,6 +247,7 @@ layout selected_calender_item
 layout slider_layout
 layout user_item
 menu bottom_nav_menu
+menu delete_menu
 menu main_custom_menu
 menu post_menu
 menu profile_menu

@@ -157,9 +157,9 @@ public class CreateEvent extends Fragment {
                                         }
                                         FirebaseDatabase.getInstance().getReference("Events").child(eventid).child("trybeid").setValue(trybeid);
                                         progressDialog.dismiss();
-                                        if(getActivity()!=null)
+                                        if(getActivity()!=null){
                                         getActivity().onBackPressed();
-                                        Toast.makeText(getActivity(), "Event created", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Event created", Toast.LENGTH_SHORT).show();}
 
                                     }
 

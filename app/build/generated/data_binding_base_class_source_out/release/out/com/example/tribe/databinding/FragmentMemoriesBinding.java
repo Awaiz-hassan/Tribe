@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -45,10 +44,7 @@ public final class FragmentMemoriesBinding implements ViewBinding {
   public final CircleImageView imageProfile;
 
   @NonNull
-  public final LinearLayout midBar;
-
-  @NonNull
-  public final TextView posts;
+  public final ConstraintLayout midBar;
 
   @NonNull
   public final RecyclerView recyclerView;
@@ -63,7 +59,7 @@ public final class FragmentMemoriesBinding implements ViewBinding {
   public final Toolbar toolbar;
 
   @NonNull
-  public final LinearLayout topBar;
+  public final ConstraintLayout topBar;
 
   @NonNull
   public final TextView username;
@@ -71,9 +67,9 @@ public final class FragmentMemoriesBinding implements ViewBinding {
   private FragmentMemoriesBinding(@NonNull ConstraintLayout rootView,
       @NonNull ImageButton addPhotos, @NonNull AppBarLayout bar, @NonNull TextView bio,
       @NonNull TextView fullname, @NonNull ImageButton imageButton,
-      @NonNull CircleImageView imageProfile, @NonNull LinearLayout midBar, @NonNull TextView posts,
+      @NonNull CircleImageView imageProfile, @NonNull ConstraintLayout midBar,
       @NonNull RecyclerView recyclerView, @NonNull RecyclerView recyclerViewSave,
-      @NonNull ScrollView scrollView2, @NonNull Toolbar toolbar, @NonNull LinearLayout topBar,
+      @NonNull ScrollView scrollView2, @NonNull Toolbar toolbar, @NonNull ConstraintLayout topBar,
       @NonNull TextView username) {
     this.rootView = rootView;
     this.addPhotos = addPhotos;
@@ -83,7 +79,6 @@ public final class FragmentMemoriesBinding implements ViewBinding {
     this.imageButton = imageButton;
     this.imageProfile = imageProfile;
     this.midBar = midBar;
-    this.posts = posts;
     this.recyclerView = recyclerView;
     this.recyclerViewSave = recyclerViewSave;
     this.scrollView2 = scrollView2;
@@ -156,14 +151,8 @@ public final class FragmentMemoriesBinding implements ViewBinding {
       }
 
       id = R.id.mid_bar;
-      LinearLayout midBar = ViewBindings.findChildViewById(rootView, id);
+      ConstraintLayout midBar = ViewBindings.findChildViewById(rootView, id);
       if (midBar == null) {
-        break missingId;
-      }
-
-      id = R.id.posts;
-      TextView posts = ViewBindings.findChildViewById(rootView, id);
-      if (posts == null) {
         break missingId;
       }
 
@@ -192,7 +181,7 @@ public final class FragmentMemoriesBinding implements ViewBinding {
       }
 
       id = R.id.top_bar;
-      LinearLayout topBar = ViewBindings.findChildViewById(rootView, id);
+      ConstraintLayout topBar = ViewBindings.findChildViewById(rootView, id);
       if (topBar == null) {
         break missingId;
       }
@@ -204,8 +193,8 @@ public final class FragmentMemoriesBinding implements ViewBinding {
       }
 
       return new FragmentMemoriesBinding((ConstraintLayout) rootView, addPhotos, bar, bio, fullname,
-          imageButton, imageProfile, midBar, posts, recyclerView, recyclerViewSave, scrollView2,
-          toolbar, topBar, username);
+          imageButton, imageProfile, midBar, recyclerView, recyclerViewSave, scrollView2, toolbar,
+          topBar, username);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

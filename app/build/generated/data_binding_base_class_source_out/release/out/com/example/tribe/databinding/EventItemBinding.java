@@ -30,18 +30,22 @@ public final class EventItemBinding implements ViewBinding {
   public final ImageView imageView;
 
   @NonNull
+  public final ImageView imageView2;
+
+  @NonNull
   public final TextView time;
 
   @NonNull
   public final TextView title;
 
   private EventItemBinding(@NonNull ConstraintLayout rootView, @NonNull TextView date,
-      @NonNull TextView description, @NonNull ImageView imageView, @NonNull TextView time,
-      @NonNull TextView title) {
+      @NonNull TextView description, @NonNull ImageView imageView, @NonNull ImageView imageView2,
+      @NonNull TextView time, @NonNull TextView title) {
     this.rootView = rootView;
     this.date = date;
     this.description = description;
     this.imageView = imageView;
+    this.imageView2 = imageView2;
     this.time = time;
     this.title = title;
   }
@@ -91,6 +95,12 @@ public final class EventItemBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.imageView2;
+      ImageView imageView2 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView2 == null) {
+        break missingId;
+      }
+
       id = R.id.time;
       TextView time = ViewBindings.findChildViewById(rootView, id);
       if (time == null) {
@@ -103,8 +113,8 @@ public final class EventItemBinding implements ViewBinding {
         break missingId;
       }
 
-      return new EventItemBinding((ConstraintLayout) rootView, date, description, imageView, time,
-          title);
+      return new EventItemBinding((ConstraintLayout) rootView, date, description, imageView,
+          imageView2, time, title);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

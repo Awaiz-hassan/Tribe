@@ -99,7 +99,7 @@ public class CalendarFragment extends Fragment {
     void getEvents(){
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-
+        if(firebaseUser!=null)
         FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("trybe").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -110,6 +110,7 @@ public class CalendarFragment extends Fragment {
                         eventMOdelList.clear();
                         for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                             EventMOdel eventMOdel= dataSnapshot.getValue(EventMOdel.class);
+                            if(eventMOdel!=null)
                             if(eventMOdel.getTrybeid().equals(trybeid)&eventMOdel.getPublisher().equals(firebaseUser.getUid()))
                                 eventMOdelList.add(eventMOdel);
                         }
@@ -134,7 +135,7 @@ public class CalendarFragment extends Fragment {
     void getEvents(String date){
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-
+        if(firebaseUser!=null)
         FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("trybe").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -145,6 +146,7 @@ public class CalendarFragment extends Fragment {
                         eventMOdelList.clear();
                         for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                             EventMOdel eventMOdel= dataSnapshot.getValue(EventMOdel.class);
+                            if(eventMOdel!=null)
                             if(eventMOdel.getTrybeid().equals(trybeid)&eventMOdel.getPublisher().equals(firebaseUser.getUid()))
                                 if(eventMOdel.getDate().equals(date))
                                 eventMOdelList.add(eventMOdel);
