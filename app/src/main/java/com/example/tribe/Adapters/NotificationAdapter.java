@@ -92,11 +92,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         .error(R.drawable.default_image)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .priority(Priority.HIGH);
-
+                if(user!=null){
+                if(user.getImageURL()!=null)
                 Glide.with(mContext).load(user.getImageURL())
                         .apply(options)
                         .into(imageView);
-                username.setText(user.getUsername());
+                username.setText(user.getUsername());}
             }
 
             @Override

@@ -86,13 +86,20 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
             @Override
             public void onClick(View view) {
 
-                FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("trybe").setValue(trybeid).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
+                if(user.getTrybe().equals(trybeid)){
+                    addNotifications(user.getId());
+                    Toast.makeText(mContext, user.getUsername()+" is already a member ", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+
+                FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("trybe").setValue(trybeid).addOnSuccessListener(unused -> {
+
+
                         addNotifications(user.getId());
                         Toast.makeText(mContext, "added in Trybe", Toast.LENGTH_SHORT).show();
-                    }
-                });
+
+                });}
 
             }
         });
