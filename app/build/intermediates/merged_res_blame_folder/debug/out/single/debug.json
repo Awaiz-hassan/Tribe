@@ -36,12 +36,12 @@
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\slider_layout.xml"
     },
     {
-        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\layout_comment_item.xml.flat",
-        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\comment_item.xml"
-    },
-    {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\drawable_event.png.flat",
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\event.png"
+    },
+    {
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\layout_comment_item.xml.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\comment_item.xml"
     },
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_forward.xml.flat",
@@ -72,32 +72,32 @@
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\calendar_icon.xml"
     },
     {
-        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_more.xml.flat",
-        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\ic_more.xml"
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\drawable_white_button_background.xml.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\white_button_background.xml"
     },
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_tribe_logo.xml.flat",
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\ic_tribe_logo.xml"
     },
     {
-        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\drawable_white_button_background.xml.flat",
-        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\white_button_background.xml"
-    },
-    {
-        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_memories.xml.flat",
-        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\fragment_memories.xml"
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_more.xml.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\ic_more.xml"
     },
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_community_icon.xml.flat",
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\ic_community_icon.xml"
     },
     {
-        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_memories.xml.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\fragment_memories.xml"
     },
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\drawable_background_left.xml.flat",
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\background_left.xml"
+    },
+    {
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_home.xml.flat",

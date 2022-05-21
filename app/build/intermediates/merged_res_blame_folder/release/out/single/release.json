@@ -8,12 +8,12 @@
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\fragment_community.xml"
     },
     {
-        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\layout_fragment_notifications.xml.flat",
-        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\fragment_notifications.xml"
-    },
-    {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\layout_activity_main.xml.flat",
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\layout_fragment_notifications.xml.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\fragment_notifications.xml"
     },
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\layout_lottie_dialog.xml.flat",
@@ -72,12 +72,12 @@
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\white_button_background.xml"
     },
     {
-        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
-    },
-    {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\layout_activity_bottom_navigation.xml.flat",
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\activity_bottom_navigation.xml"
+    },
+    {
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\layout_activity_post.xml.flat",
