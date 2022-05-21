@@ -39,6 +39,7 @@ public class CreateEvent extends Fragment {
     TimePicker timePicker;
     String trybeid ="notadded";
     ProgressDialog progressDialog;
+    private DatabaseReference dbRef;
 
 
     @Override
@@ -120,7 +121,7 @@ public class CreateEvent extends Fragment {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-        reference.orderByChild("trybe").addValueEventListener(new ValueEventListener() {
+        reference.orderByChild("trybe").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -142,11 +143,11 @@ public class CreateEvent extends Fragment {
 
                     }
                     else{
-                        FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("trybe").addValueEventListener(new ValueEventListener() {
+                        FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("trybe").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 trybeid=snapshot.getValue(String.class);
-                                FirebaseDatabase.getInstance().getReference("Users").addValueEventListener(new ValueEventListener() {
+                                FirebaseDatabase.getInstance().getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
