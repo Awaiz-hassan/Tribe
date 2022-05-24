@@ -115,6 +115,8 @@ id date
 id datePicker1
 id delete
 id deleteEvent
+id delete_ch
+id delete_mem
 id deny
 id description
 id dis_like
@@ -247,6 +249,8 @@ layout selected_calender_item
 layout slider_layout
 layout user_item
 menu bottom_nav_menu
+menu delete_chat
+menu delete_member
 menu delete_menu
 menu main_custom_menu
 menu post_menu

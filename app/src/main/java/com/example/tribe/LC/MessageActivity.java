@@ -162,14 +162,16 @@ public class MessageActivity extends AppCompatActivity {
     private void sendMessage(String sender, final String receiver, String message){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        String messageid = reference.push().getKey();
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", sender);
         hashMap.put("receiver", receiver);
         hashMap.put("message", message);
         hashMap.put("isseen", false);
+        hashMap.put("messageId",messageid);
 
-        reference.child("Chats").push().setValue(hashMap);
+        reference.child("Chats").child(messageid).setValue(hashMap);
 
 
         // add user to chat fragment
@@ -280,11 +282,7 @@ public class MessageActivity extends AppCompatActivity {
         });
     }
 
-    private void currentUser(String userid){
-        SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
-        editor.putString("currentuser", userid);
-        editor.apply();
-    }
+
 
     private void status(String status){
         reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
@@ -299,7 +297,6 @@ public class MessageActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         status("online");
-        currentUser(userid);
     }
 
     @Override
@@ -307,6 +304,5 @@ public class MessageActivity extends AppCompatActivity {
         super.onPause();
         reference.removeEventListener(seenListener);
         status("offline");
-        currentUser("none");
     }
 }

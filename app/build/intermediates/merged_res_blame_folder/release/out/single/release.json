@@ -132,12 +132,12 @@
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\selected_calender_item.xml"
     },
     {
-        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\drawable_ic_add_members.xml.flat",
-        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\ic_add_members.xml"
-    },
-    {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\menu_main_custom_menu.xml.flat",
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\menu\\main_custom_menu.xml"
+    },
+    {
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\drawable_ic_add_members.xml.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\ic_add_members.xml"
     },
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\layout_fragment_blank.xml.flat",
@@ -164,12 +164,12 @@
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\layout\\fragment_home.xml"
     },
     {
-        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\drawable_default_image.jpg.flat",
-        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\default_image.jpg"
-    },
-    {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\drawable_ic_disliked.xml.flat",
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\ic_disliked.xml"
+    },
+    {
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\drawable_default_image.jpg.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\default_image.jpg"
     },
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\drawable_ic_baseline_remove_red_eye_24.xml.flat",
@@ -360,6 +360,10 @@
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\ic_person.xml"
     },
     {
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\menu_delete_chat.xml.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\menu\\delete_chat.xml"
+    },
+    {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\drawable_ic_send.xml.flat",
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\ic_send.xml"
     },
@@ -422,6 +426,10 @@
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\drawable_selected_item_backgroud.xml.flat",
         "source": "D:\\backup\\tribe\\app\\src\\main\\res\\drawable\\selected_item_backgroud.xml"
+    },
+    {
+        "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\menu_delete_member.xml.flat",
+        "source": "D:\\backup\\tribe\\app\\src\\main\\res\\menu\\delete_member.xml"
     },
     {
         "merged": "D:\\backup\\tribe\\app\\build\\intermediates\\merged_res\\release\\drawable_ic_home_black_24dp.xml.flat",

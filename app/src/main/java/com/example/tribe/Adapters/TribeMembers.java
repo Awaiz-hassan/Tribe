@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -16,6 +17,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.tribe.Model.User;
 import com.example.tribe.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -53,6 +56,26 @@ public class TribeMembers extends RecyclerView.Adapter<TribeMembers.ViewHolder> 
                 .apply(options)
                 .into(holder.userImage);
         holder.username.setText(user.getUsername());
+        holder.itemView.setOnClickListener(view -> {
+            PopupMenu popupMenu = new PopupMenu(context , view);
+            popupMenu.setOnMenuItemClickListener(item -> {
+                switch (item.getItemId()){
+                    case R.id.delete_mem:
+                        FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("trybe").setValue("notadded");
+                        return true;
+                    default:
+                        return false;
+                }
+
+
+            });
+            popupMenu.inflate(R.menu.delete_member);
+            if(user.getId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                popupMenu.getMenu().findItem(R.id.delete_mem).setVisible(false);
+
+            }
+            popupMenu.show();
+        });
 
 
     }

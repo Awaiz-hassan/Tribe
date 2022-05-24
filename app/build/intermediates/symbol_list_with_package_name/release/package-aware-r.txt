@@ -2991,6 +2991,8 @@ id decor_content_parent
 id default_activity_button
 id delete
 id deleteEvent
+id delete_ch
+id delete_mem
 id deltaRelative
 id deny
 id dependency_ordering
@@ -3683,6 +3685,8 @@ layout text_view_without_line_height
 layout user_item
 menu bottom_nav_menu
 menu crop_image_menu
+menu delete_chat
+menu delete_member
 menu delete_menu
 menu example_menu
 menu example_menu2

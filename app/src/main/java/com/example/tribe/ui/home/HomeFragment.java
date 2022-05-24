@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
     CardView addMembers;
     TribeMembers tribeMembers;
     MemberAdapter memberAdapter;
-    String trybeid="notadd";
+    String trybeid="notadded";
    AlertDialog searchDialog;
     private FragmentHomeBinding binding;
 

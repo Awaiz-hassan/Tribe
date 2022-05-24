@@ -93,52 +93,46 @@ public class PostActivity extends AppCompatActivity {
             final StorageReference filereference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
 
             uploadTask = filereference.putFile(imageUri);
-            uploadTask.continueWithTask(new Continuation() {
-                @Override
-                public Object then(@NonNull Task task) throws Exception {
-                    if (!task.isSuccessful()){
-                        throw task.getException();
-                    }
-
-                    return  filereference.getDownloadUrl();
+            uploadTask.continueWithTask(task -> {
+                if (!task.isSuccessful()){
+                    throw task.getException();
                 }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()){
-                        Uri downloadUri = task.getResult();
-                        myUrl = downloadUri.toString();
 
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("userPosts");
+                return  filereference.getDownloadUrl();
+            }).addOnCompleteListener((OnCompleteListener<Uri>) task -> {
+                if (task.isSuccessful()){
+                    Uri downloadUri = task.getResult();
+                    myUrl = downloadUri.toString();
 
-                        String postid = reference.push().getKey();
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("userPosts");
 
-                        HashMap<String , Object> hashMap = new HashMap<>();
-                        hashMap.put("postid" , postid);
-                        hashMap.put("postimage" , myUrl);
-                        hashMap.put("description" , description.getText().toString());
-                        hashMap.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    String postid = reference.push().getKey();
 
-                        reference.child(postid).setValue(hashMap);
+                    HashMap<String , Object> hashMap = new HashMap<>();
+                    hashMap.put("postid" , postid);
+                    hashMap.put("postimage" , myUrl);
+                    hashMap.put("description" , description.getText().toString());
+                    hashMap.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-                        DatabaseReference mHashTagRef = FirebaseDatabase.getInstance().getReference().child("HashTags");
-                        List<String> hashTags = description.getHashtags();
-                        if (!hashTags.isEmpty()){
-                            for (String hashTag : hashTags){
-                                hashMap.clear();
+                    reference.child(postid).setValue(hashMap);
 
-                                hashMap.put("tag" , hashTag.toLowerCase());
-                                hashMap.put("postid" , postid);
+                    DatabaseReference mHashTagRef = FirebaseDatabase.getInstance().getReference().child("HashTags");
+                    List<String> hashTags = description.getHashtags();
+                    if (!hashTags.isEmpty()){
+                        for (String hashTag : hashTags){
+                            hashMap.clear();
 
-                                mHashTagRef.child(hashTag.toLowerCase()).child(postid).setValue(hashMap);
-                            }
+                            hashMap.put("tag" , hashTag.toLowerCase());
+                            hashMap.put("postid" , postid);
+
+                            mHashTagRef.child(hashTag.toLowerCase()).child(postid).setValue(hashMap);
                         }
-
-                        progressDialog.dismiss();
-                        finish();
-                    } else {
-                        Toast.makeText(PostActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                     }
+
+                    progressDialog.dismiss();
+                    finish();
+                } else {
+                    Toast.makeText(PostActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

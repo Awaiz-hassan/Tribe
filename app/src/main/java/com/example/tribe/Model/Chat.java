@@ -6,15 +6,25 @@ public class Chat {
     private String receiver;
     private String message;
     private boolean isseen;
+    private String messageId;
 
-    public Chat(String sender, String receiver, String message, boolean isseen) {
+    public Chat(String sender, String receiver, String message, boolean isseen, String messageId) {
         this.sender = sender;
         this.receiver = receiver;
         this.message = message;
         this.isseen = isseen;
+        this.messageId = messageId;
     }
 
     public Chat() {
+    }
+
+    public String getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
 
     public String getSender() {

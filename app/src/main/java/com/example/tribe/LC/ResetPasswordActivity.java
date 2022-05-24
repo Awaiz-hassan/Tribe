@@ -42,12 +42,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
-        back_arrow_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
-                finish();
-            }
+        back_arrow_btn.setOnClickListener(view -> {
+            startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
+            finish();
         });
 
         send_link_btn.setOnClickListener(new View.OnClickListener() {

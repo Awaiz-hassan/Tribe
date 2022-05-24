@@ -195,7 +195,7 @@ public class CreateEvent extends Fragment {
 
         HashMap<String , Object> hashMap = new HashMap<>();
         hashMap.put("userid" , FirebaseAuth.getInstance().getCurrentUser().getUid());
-        hashMap.put("text" , desc);
+        hashMap.put("text" , "Invited for event "+desc);
         hashMap.put("postid" , postid);
         hashMap.put("ispost" , true);
 
